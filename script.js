@@ -7,14 +7,18 @@ var todayDate = dayjs().format('dddd, MMM D YYYY');
 $("#currentDay").html(todayDate);
 
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
- 
-
+// Targets saveBtn adding the event listener through jquery
+  $('.saveBtn').on('click', function() {
+    // The closest attribute here traverses back up the DOM to find the ancestor element, then the attr id selects the correct attribute to apply the new const to.
+    const timeBlockId = $(this).closest('.time-block').attr('id');
+  
+    // This line creates the field for user input within the textarea
+    const userInput = $(this).siblings('textarea').val();
+  
+    // Save the user input to local storage
+    localStorage.setItem(timeBlockId, userInput);
+  });
+  
   $(document).ready(function() {
     function updateTimeBlockColors() {
       // I'm still working on getting this const to run through dayjs
