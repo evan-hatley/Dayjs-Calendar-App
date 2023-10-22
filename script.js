@@ -1,7 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 // This adds a current date to the title of the schedule. It changes each day.
 var todayDate = dayjs().format('dddd, MMM D YYYY');
 $("#currentDay").html(todayDate);
@@ -17,12 +13,16 @@ $(function () {
   
     // Save the user input to local storage
     localStorage.setItem(timeBlockId, userInput);
+    console.log(userInput);
   });
   
   $(document).ready(function() {
     function updateTimeBlockColors() {
-      // I'm still working on getting this const to run through dayjs
       const currentHour = new Date().getHours();
+// Added an alert message if a user wants to check the site during hours the scheduler isn't set to run.
+      if (currentHour >= 18 || currentHour < 8) {
+        alert("Please come back during business hours of 9Am to 5PM");
+      } 
       // Loops through each time block
       $('.time-block').each(function() {
         // This const parses the ids, which separate the hour divs in my HTML. I did this so I can later create an if else to apply classes.
@@ -41,14 +41,9 @@ $(function () {
     // Runs the function to automatically change the classes to the time-appropriate colors
     updateTimeBlockColors();
   
-    // Set an interval to update the classes every 5 minutes
-    setInterval(updateTimeBlockClasses, 300000);
+    // Set an interval to update the classes every 2 minutes
+    setInterval(updateTimeBlockColors, 12000);
   });
-  
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
- 
-
+  // Sets to local storage
+  localStorage.setItem("userInput", JSON.stringify("userInput"));
 });
