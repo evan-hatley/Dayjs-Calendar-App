@@ -23,6 +23,6 @@ WHEN I refresh the page
 THEN the saved events persist
 
 ## Deployment
-Project was deployed through GitHub Desktop. The link to reach this project is 
+Project was deployed through GitHub Desktop. The link to reach this project is https://evan-hatley.github.io/Dayjs-Calendar-App/ 
 
 ### NOTE: The color-coded schedule only works between the hours of 9 AM and 5 PM. After 9 AM each day, the schedule will reset to to the correct colors. After 5 PM, the schedule will display the class of .past. I have included an alert to tell users to visit between working hours.
